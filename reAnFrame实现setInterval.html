@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function myInterval(callback, delay) {
+            let timer;
+            // 初始化时间
+            let startTime = endTime =  Date.now()
+            function loop() {
+                timer = window.requestAnimationFrame(loop)
+                endTime = Date.now()
+                // 到了设定好的执行时间再执行回调函数
+                if (endTime - startTime >= delay) {
+                    // 初始化时间
+                    endTime = startTime = Date.now()
+                    callback(timer)
+                }
+            }
+            // 启动定时器
+            timer = window.requestAnimationFrame(loop)
+            // 返回控制器
+            return timer
+        }
+        console.time()
+        let a = 1
+        function fn(timer) {
+            a++
+            console.log(a)
+            if (a == 3) {
+                cancelAnimationFrame(timer)
+                console.timeEnd()
+            }
+        }
+        myInterval(fn, 1000)
+    </script>
+</body>
+
+</html>

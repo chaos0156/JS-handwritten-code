@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 2500px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        window.addEventListener('scroll', throttle(function () {
+            console.log('ok')
+        }, 500))
+        //定时器
+        // function throttle(fn, delay) {
+        //     let timer = null
+        //     return function () {
+        //         let _this = this
+        //         let args = [...arguments]
+        //         if (!timer) {
+        //           timer = setTimeout(() => {
+        //                 fn.apply(_this, args)
+        //                 timer = null
+        //             }, delay)
+        //         }
+        //     }
+        // }
+        // document.addEventListener('mousemove',function(){
+        //     console.log('okk');
+        // })
+        // 时间戳
+        // function throttle(fn, delay) {
+        //     let startTime = endTime = Date.now()
+        //     return function () {
+        //         let _this = this
+        //         let args = [...arguments]
+        //         endTime = Date.now()
+        //         if (endTime - startTime >= delay) {
+        //             startTime = endTime = Date.now()
+        //             fn.apply(_this, args)
+        //         }
+        //     }
+        // }
+        //requestAnimationFrame
+        function throttle(fn, delay) {
+            let enabled = true;
+            return function () {
+                if (enabled) {
+                    enabled = false;
+                    // window.requestAnimationFrame(fn)
+                    // fn()
+                    setTimeout(() => {
+                        fn()
+                        enabled = true
+                    }, 1000)
+                }
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

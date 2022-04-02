@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [1, [2, [3]]]
+        //ES5
+        function flatten(arr) {
+            let res = []
+            let n = arr.length
+            for (let i = 0; i < n; i++) {
+                if (Array.isArray(arr[i])) {
+                    res = res.concat(flatten(arr[i]))
+                } else {
+                    res.push(arr[i])
+                }
+            }
+            return res
+        }
+        console.log(flatten(arr));
+        //ES6
+        function flat(arr){
+            while(arr.some((item)=>Array.isArray(item))){
+                arr = [].concat(...arr)
+            }
+            return arr
+        }
+        console.log(flat(arr));
+        console.log(arr)
+    </script>
+</body>
+
+</html>

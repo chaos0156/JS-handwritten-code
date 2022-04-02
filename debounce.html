@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 2500px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text">
+    <script>
+        let inp = document.querySelector('input')
+        // let timer = null
+        // inp.oninput = function () {
+        //     if (timer) {
+        //         clearTimeout(timer)
+        //     }
+        //     timer = setTimeout(() => {
+        //         console.log(this.value)
+        //     }, 500)
+        // }
+        // 优化
+        inp.oninput = debounce(function () {
+            console.log(this.value)
+        }, 500)
+
+        function debounce(fn, delay) {
+            let t = null
+            return function () {
+                // console.log('@@',this)
+                if (t) clearTimeout(t)
+                t = setTimeout(() => {
+                    fn.call(this)
+                }, delay)
+            }
+        }
+        // 防抖
+        function debounce(func, wait = 0) {
+            if (typeof func !== 'function') {
+                throw new TypeError('need a function arguments')
+            }
+            let timeid = null;
+            let result;
+
+            return function () {
+                let context = this;
+                let args = arguments;
+
+                if (timeid) {
+                    clearTimeout(timeid);
+                }
+                timeid = setTimeout(function () {
+                    result = func.apply(context, args);
+                }, wait);
+
+                return result;
+            }
+        }
+        // 处理函数
+        function handle() {
+            console.log(Math.random());
+        }
+        // 滚动事件
+        window.addEventListener('scroll', debounce(handle, 1000));
+    </script>
+</body>
+
+</html>

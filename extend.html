@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //原型链继承
+        // function Animal(){
+        //     this.colors = ['red','green']
+        // }
+        // Animal.prototype.getColor = function(){
+        //     console.log(this.colors)
+        // }
+        // function Dog(){}
+        // Dog.prototype = new Animal()
+        // Dog.prototype.constructor = Dog
+        // let dog = new Dog()
+        // dog.colors.push('blue')
+        // let dog2 = new Dog()
+        // dog2.getColor()
+        //1父类中有引用值时，所有实例共享同一个引用值
+        //2子类无法向父类中传参
+
+        //借用构造函数继承
+        // function Animal(name) {
+        //     this.name = name
+        //     this.colors = ['red', 'blue']
+        //     this.getColors = function(){
+        //         console.log(this.colors)
+        //     }
+        // }
+        // Animal.prototype.getName = function () {
+        //     console.log(this.name)
+        // }
+        // function Dog(age) {
+        //     Animal.call(this, name)
+        //     this.age = age
+        // }
+        // let dog = new Dog('ch', 12)
+        // dog.colors.push('green')
+        // let dog2 = new Dog('wd', 11)
+        // dog2.getColors()
+        // console.log(dog2.getName())
+        //1方法定义在构造函数中，每创建一个实例就会重新创建一遍方法，函数不可以重用
+        //2子类的实例不可以访问父类原型对象中的方法
+
+        //组合继承
+        // function Animal(name){
+        //     this.name = name
+        //     this.colors = ['red','blue']
+        // }
+        // Animal.prototype.getName = function(){
+        //     console.log(this.name)
+        // }
+        // function Dog(name,age){
+        //     Animal.call(this,name)
+        //     this.age = age
+        // }
+        // Dog.prototype = new Animal()
+        // Dog.prototype.constructor = Dog
+        // let dog1 = new Dog('ch',11)
+        // dog1.colors.push('green')
+        // let dog2 = new Dog('wd',12)
+        // dog2.getName()
+        // console.log(dog2.colors)
+        //效率问题，会执行父类构造函数会执行两边，子类原型中会有用不到的属性。
+
+        //寄生式组合继承
+        // function object(o) {
+        //     function F() { }
+        //     F.prototype = o
+        //     return new F()
+        // }
+        // function inherit(Child, Super) {
+        //     let prototype = object(Super.prototype)
+        //     prototype.constructor = Child
+        //     Child.prototype = prototype
+        // }
+        // function Animal(name) {
+        //     this.name = name
+        //     this.colors = ['red', 'blue']
+        // }
+        // Animal.prototype.getName = function () {
+        //     console.log(this.name)
+        // }
+        // function Dog(name,age){
+        //     Animal.call(this,name)
+        //     this.age = age
+        // }
+        // // inherit(Dog,Animal)
+        // // function F(){}
+        // // F.prototype = Animal.prototype
+        // // Dog.prototype  = new F()
+        // // Dog.prototype.constructor = Dog
+        // Dog.prototype = Object.create(Animal.prototype)
+        // Dog.prototype.constructor = Dog
+        // console.log(Dog.prototype)
+        // let dog = new Dog('chaos',23)
+        // dog.colors.push('green')
+        // let dog1 = new Dog('dwa',22)
+        // dog1.getName()
+        // console.log(dog1.colors)
+
+
+        //class关键字实现继承
+        class Animal{
+            constructor(name){
+                this.name = name
+                this.colors = ['red']
+            }
+            getName(){
+                console.log(this.name)
+            }
+        }
+        class Dog extends Animal{
+            constructor(name,age){
+                super(name)
+                this.age = age
+            }
+        }
+        let dog = new Dog('chaos',23)
+        dog.colors.push('green')
+        let dog1 = new Dog('dwa',22)
+        dog1.getName()
+        console.log(dog1.colors)
+    </script>
+</body>
+
+</html>
