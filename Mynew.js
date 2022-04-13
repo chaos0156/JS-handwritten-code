@@ -18,6 +18,5 @@ function myNew() {
     let flag = res && (typeof res === 'object' || typeof res === 'function')
     return flag ? res : newObj
 }
-
 let a = myNew(Fn, 'chaos', 12)
 console.log(a);

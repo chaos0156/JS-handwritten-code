@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const treeObj = {
+            id: '0',
+            name: '0',
+            children: [
+                {
+                    id: '1',
+                    name: 'anc',
+                    children: [
+                        {
+                            id: '1-1',
+                            name: 'anc',
+                            children: [
+                                {
+                                    id: '1-1-1',
+                                    name: 'anc',
+                                },
+                                {
+                                    id: '1-1-2',
+                                    name: 'anc'
+                                },
+                            ]
+                        },
+                        {
+                            id: '1-2',
+                            name: 'anc',
+                            children: [
+                                {
+                                    id: '1-2-1',
+                                    name: 'anc',
+                                },
+                                {
+                                    id: '1-2-2',
+                                    name: 'anc'
+                                },
+                            ]
+                        },
+                    ]
+                },
+                {
+                    id: '2',
+                    name: 'anc',
+                    children: [
+                        {
+                            id: '2-1',
+                            name: 'anc',
+                            children: [
+                                {
+                                    id: '2-1-1',
+                                    name: 'anc',
+                                },
+                                {
+                                    id: '2-1-2',
+                                    name: 'anc'
+                                },
+                            ]
+                        },
+                        {
+                            id: '2-2',
+                            name: 'anc',
+                            children: [
+                                {
+                                    id: '2-2-1',
+                                    name: 'anc',
+                                    children: [
+                                        {
+                                            id: '2-2-1-1',
+                                            name: 'anc',
+                                        },
+                                        {
+                                            id: '2-2-1-2',
+                                            name: 'anc'
+                                        },
+                                    ]
+                                },
+                                {
+                                    id: '2-2-2',
+                                    name: 'anc'
+                                },
+                            ]
+                        },
+                        {
+                            id: '2-3',
+                            name: 'anc',
+                            children: [
+                                {
+                                    id: '2-3-1',
+                                    name: 'anc',
+                                },
+                                {
+                                    id: '2-3-2',
+                                    name: 'anc'
+                                },
+                            ]
+                        },
+                    ]
+                },
+                {
+                    id: '3',
+                    name: 'anc',
+                    children: []
+                }
+            ]
+        };
+        console.log('treeObj', treeObj)
+        // 将treeObj中的所有对象，放入一个数组中，要求某个对象在另一个对象的children时，其parent_id是对应的另一个对象的id
+        // 其原理实际上是数据结构中的广度优先遍历
+
+        function tree2Array(treeObj, rootid) {
+            const temp = [];  // 设置临时数组，用来存放队列
+            const out = [];    // 设置输出数组，用来存放要输出的一维数组
+            temp.push(treeObj);
+            // 首先把根元素存放入out中
+            let pid = rootid;
+            const obj = deepCopy(treeObj);
+            obj.pid = pid;
+            delete obj['children'];
+            out.push(obj)
+            // 对树对象进行广度优先的遍历
+            while (temp.length > 0) {
+                // 获取父对象
+                const first = temp.shift();
+                // children是个数组
+                const children = first.children;
+                pid = first.id;
+                while (children && children.length > 0) {
+                    let child = children.shift()
+                    temp.push(child);
+                    const obj = deepCopy(child);
+                    obj.pid = pid;
+                    delete obj['children'];
+                    out.push(obj)
+                }
+            }
+            return out
+        }
+        console.log(tree2Array(treeObj, 'root'))
+        // 深拷贝
+        function deepCopy(obj) {
+            // 深度复制数组
+            if (Object.prototype.toString.call(obj) === "[object Array]") {
+                const object = [];
+                for (let i = 0; i < obj.length; i++) {
+                    object.push(deepCopy(obj[i]))
+                }
+                return object
+            }
+            // 深度复制对象
+            if (Object.prototype.toString.call(obj) === "[object Object]") {
+                const object = {};
+                for (let p in obj) {
+                    object[p] = obj[p]
+                }
+                return object
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -14,7 +14,6 @@ function deepClone(obj) {
     }
     return newObj
 }
-
 let _ = require('lodash')
 let obj = {
     a: 0,
@@ -29,7 +28,8 @@ let obj = {
         g: true,
         h: 'chaos',
         k: [1, 2, 3, 4, 5],
-        y: null
+        y: null,
+        // z: 1235n     //TypeError: Do not know how to serialize a BigInt
     },
     k: NaN
 }
