@@ -2,7 +2,6 @@
 
 //使用扩展运算符收集参数
 Function.prototype.myCall = function (context, ...args) {
-    console.log(args);
     // 1.判断调用call的是不是一个函数
     if (typeof this !== 'function') return new Error('不是函数')
     // 2.判断传入的context是否存在，如果不存在则绑定this为window

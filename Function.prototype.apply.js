@@ -8,7 +8,7 @@ Function.prototype.myApply = function (context, args) {
     // 3. 将调用的函数作为上下文的方法
     context.fn = this
     // 4. 执行该方法，接收结果
-    let res = context.fn(...args)
+    let res = context.fn([...args])
     // 5. 删除该方法
     delete context.fn
     // 6. 返回结果

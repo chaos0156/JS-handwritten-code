@@ -79,5 +79,9 @@ var obja = new bindFoo(18);
 // 18
 console.log(obja.habit);
 console.log(obja.friend);
+console.log(obja instanceof bar);
+console.log(obja instanceof bindFoo);
 // shopping
 // kevin
+// true
+// true

@@ -30,6 +30,8 @@ let obj = {
         k: [1, 2, 3, 4, 5],
         y: null,
         // z: 1235n     //TypeError: Do not know how to serialize a BigInt
+        w: new Map(),
+        z: new Set([1,2,3])
     },
     k: NaN
 }

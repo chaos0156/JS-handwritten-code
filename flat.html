@@ -34,6 +34,26 @@
         }
         console.log(flat(arr));
         console.log(arr)
+        // 栈实现
+        function flat3(arr) {
+            let res = [];
+            let stack = [...arr];
+            while(stack.length) {
+                let cur = stack.pop()
+                if(Array.isArray(cur)){
+                    stack.push(...cur)
+                }else{
+                    res.push(cur)
+                }
+            }
+            return res.reverse()
+        }
+        // 使用reduce可以传入depth
+        function flat4(arr,depth = 1) {
+            return depth > 0 ? arr.reduce((acc,cur)=>{
+                return acc.concat(Array.isArray(cur)? flat4( cur , depth - 1) : cur )
+            },[]) : arr.slice()
+        }
     </script>
 </body>
 

@@ -12,7 +12,9 @@ console.log('c',unique(arr));
 
 function uniqueTWO(arr) {
     return arr.reduce((acc,cur,index)=>{
-        return [].concat(acc, arr.indexOf(cur) === index ? cur : [] )
-    })
+        return acc.concat(arr.indexOf(cur) === index ? cur : [] )
+    },[])
 }
 console.log('d',uniqueTWO(arr));
+
+// 判断NaN
