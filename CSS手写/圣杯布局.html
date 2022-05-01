@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            overflow: hidden;
+            height: 100px;
+            padding: 0 100px 0 50px;
+        }
+        .center {
+            float: left;
+            width: 100%;
+            background-color: chartreuse;
+        }
+        .left {
+            width: 50px;
+            float: left;
+            margin-left: -100%;
+            position: relative;
+            left: -50px;
+            background-color: tomato;
+        }
+        .right {
+            width: 100px;
+            float: left;
+            position: relative;
+            left: 100px;
+            margin-left: -100px;
+            background-color: gold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="center">
+            圣杯布局
+        </div>
+        <div class="left">左侧</div>
+        <div class="right">右侧</div>
+    </div>
+</body>
+
+</html>

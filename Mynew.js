@@ -9,7 +9,7 @@ function myNew() {
     //判断构造函数
     if (typeof constructor !== 'function') return new Error('不是构造函数')
     //创建新对象，使其__proto__执行构造函数的原型对象
-    let newObj = new Object()
+    let newObj = {}
     newObj.__proto__ = constructor.prototype
     //执行构造函数代码，使构造函数的this执行新创建的对象，为新创建的对象添加属性和方法
     //使用一个新变量获取构造函数的返回值

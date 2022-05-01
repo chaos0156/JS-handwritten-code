@@ -1,11 +1,9 @@
 function shallowCopy(obj){
     if(typeof obj !== 'object') return
     let newObject = Array.isArray(obj)?[]:{}
-    for(let key in obj){
-        if(Object.prototype.hasOwnProperty.call(obj,key)){
-            newObject[key] = obj[key]
-        }
-    }
+    Object.keys(obj).forEach(key=>{
+        newObject[key] = obj[key]
+    })
     return newObject
 }
 let b = {a:1,c:2}

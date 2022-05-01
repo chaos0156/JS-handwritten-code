@@ -11,56 +11,56 @@
 //         console.log('scroll触发');
 //     })
 // })
-// let imgList = [...document.querySelectorAll('img')]
-// //console.log(imgList);
-// let length = imgList.length
-// const imgLazyLoad = (function () {
-//     let count = 0
-//     return function () {
-//         let deleteIndexList = []
-//         imgList.forEach((img, index) => {
-//             let rect = img.getBoundingClientRect()
-//             //console.log(rect);
-//             if (rect.top < window.innerHeight) {
-//                 console.log('index',index);
-//                 img.src = img.dataset.src
-//                 deleteIndexList.push(index)
-//                 //console.log(deleteIndexList);
-//                 count++
-//                 if (count === length) {
-//                     document.removeEventListener('scroll', imgLazyLoad)
-//                 }
-//             }
-//             //console.log('scroll触发了');
-//         })
-//          imgList = imgList.filter((img, index) => {
-//              console.log(index);
-//             return !deleteIndexList.includes(index)})
-//         //console.log(imgList);
-//     }
-// })()
-// // // 这里最好加上防抖处理
-// document.addEventListener('scroll', imgLazyLoad)
+let imgList = [...document.querySelectorAll('img')]
+//console.log(imgList);
+let length = imgList.length
+const imgLazyLoad = (function () {
+    let count = 0
+    return function () {
+        let deleteIndexList = []
+        imgList.forEach((img, index) => {
+            let rect = img.getBoundingClientRect()
+            //console.log(rect);
+            if (rect.top < window.innerHeight) {
+                console.log('index',index);
+                img.src = img.dataset.src
+                deleteIndexList.push(index)
+                //console.log(deleteIndexList);
+                count++
+                if (count === length) {
+                    document.removeEventListener('scroll', imgLazyLoad)
+                }
+            }
+            //console.log('scroll触发了');
+        })
+         imgList = imgList.filter((img, index) => {
+             console.log(index);
+            return !deleteIndexList.includes(index)})
+        //console.log(imgList);
+    }
+})()
+// // 这里最好加上节流处理
+document.addEventListener('scroll', imgLazyLoad)
 
-const imageList = document.querySelectorAll('img')
+// const imageList = document.querySelectorAll('img')
 
-const callback = entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const image = entry.target
-            const data_src = image.getAttribute('data-src')
-            image.setAttribute('src', data_src)
-            observer.unobserve(image)
-            console.log('触发');
-        }
-    })
-}
+// const callback = entries => {
+//     entries.forEach(entry => {
+//         if (entry.isIntersecting) {
+//             const image = entry.target
+//             const data_src = image.getAttribute('data-src')
+//             image.setAttribute('src', data_src)
+//             observer.unobserve(image)
+//             console.log('触发');
+//         }
+//     })
+// }
 
-const observer = new IntersectionObserver(callback)
+// const observer = new IntersectionObserver(callback)
 
-imageList.forEach(image=>{
-    observer.observe(image)
-})
+// imageList.forEach(image=>{
+//     observer.observe(image)
+// })
 
 // var imgs = document.querySelectorAll('img');
 

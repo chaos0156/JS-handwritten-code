@@ -1,15 +1,11 @@
 function get(obj, path) {
     let paths = path.split('.')
-    let i = 0;
     let res = obj
-    while (i < paths.length) {
-        res = res[paths[i]]
-        if (res === undefined) return
-        i++
-    }
+    paths.forEach(key => {
+        res = res[key]
+    })
     return res
 }
-
 function getA(obj, path) {
     // let paths = path.replace(/\[(\d+)\]/g, function (_, p1) { return `.${p1}` }).split('.')
     let paths = path.replace(/\[(\d+)\]/g, '.$1').split('.')
@@ -38,7 +34,7 @@ const _ = require('lodash')
 let user = {
     name: 'xxx',
     address: [{
-        city:'nanjing'
+        city: 'nanjing'
     }]
 }
 let stra = 'address[0].city'

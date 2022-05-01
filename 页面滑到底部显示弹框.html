@@ -44,6 +44,7 @@
         }
         window.onscroll = throttle(app, 100)
         function app(e) {
+            console.log(document.documentElement.scrollTop);
             if (document.body.scrollHeight <= document.documentElement.scrollTop + document.documentElement.clientHeight) {
                 alert(`${e.target.title}滚动条已经到底了`)
             }

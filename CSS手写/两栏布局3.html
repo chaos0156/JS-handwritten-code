@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outer{
+            height: 100px;
+            position: relative;
+        }
+        .left{
+            width: 200px;
+            background-color: tomato;
+        }
+        .right{
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 200px;
+            background-color: gold;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HTML结构 -->
+    <div class="outer">
+        <div class="left">
+            左侧固定内容
+        </div>
+        <div class="right">
+            右侧内容自适应
+        </div>
+    </div>
+</body>
+
+</html>

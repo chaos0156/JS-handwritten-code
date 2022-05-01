@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .outer{
+            display: flex;
+            background-color: aqua;
+            width: 200px;
+        }
+        #box1{
+            flex-grow: 1;
+            width: 50px;
+            background-color: blueviolet;
+            height: 30px;
+        }
+        #box2{
+            flex-grow: 1;
+            width: 50px;
+            background-color: gold;
+            height: 30px;
+        }
+        #box3{
+            flex-grow: 1;
+            width: 50px;
+            background-color: #eee;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <div id="box1"></div>
+        <div id="box2"></div>
+        <div id="box3"></div>
+    </div>
+    <script>
+        const box1 = document.getElementById('box1')
+        const box2 = document.getElementById('box2')
+        const box3 = document.getElementById('box3')
+        box1.innerHTML = window.getComputedStyle(box1).width
+        box2.innerHTML = window.getComputedStyle(box2).width
+        box3.innerHTML = window.getComputedStyle(box3).width
+    </script>
+</body>
+
+</html>

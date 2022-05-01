@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas dolor?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas dolor?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas dolor?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas dolor?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas dolor?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas dolor?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas dolor?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas dolor?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas dolor?</p>
+    <img src="" alt="" data-src="./images/1.webp">
+    <hr>
+    <img src="" alt="" data-src="./images/2.webp">
+    <hr>
+    <img src="" alt="" data-src="./images/3.webp">
+    <hr>
+    <img src="" alt="" data-src="./images/4.webp">
+    <script>
+        let imgList = [...document.querySelectorAll('img')]
+        let n = imgList.length
+        let count = 0
+        function lazyload() {
+            let flag = false
+            imgList.forEach(img=>{
+                let top = img.offsetTop
+                // document.documentElement.clientHeight
+                if( top < window.innerHeight + document.documentElement.scrollTop ) {
+                    img.src = img.getAttribute('data-src')
+                    //标志该img标签已经加载，此时不应该再判断他的top元素，避免重复判断。
+                    flag = true
+                    count++
+                    if( count === n )  document.onscroll = null
+                }
+            })
+            //flag==true表示已经加载完成首个img标签的加载，已经确定加载的图片应当从imgList中移除。
+            if(flag) imgList.shift()
+        }
+        document.onscroll = lazyload
+    </script>
+</body>
+</html>
