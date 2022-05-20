@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit
+        at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas
+        dolor?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit
+        at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas
+        dolor?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit
+        at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas
+        dolor?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit
+        at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas
+        dolor?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit
+        at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas
+        dolor?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit
+        at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas
+        dolor?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit
+        at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas
+        dolor?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit
+        at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas
+        dolor?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique autem aspernatur praesentium ipsam quas velit
+        at reiciendis temporibus reprehenderit. Perspiciatis saepe iure dolor. Aliquid aut doloribus odio aperiam, quas
+        dolor?</p>
+    <img src="" alt="" data-src="../images/1.webp">
+    <hr>
+    <img src="" alt="" data-src="../images/2.webp">
+    <hr>
+    <img src="" alt="" data-src="../images/3.webp">
+    <hr>
+    <img src="" alt="" data-src="../images/4.webp">
+    <script>
+        let imgList = document.querySelectorAll('img')
+        let observer = new IntersectionObserver(callback)
+        function callback(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.src = entry.target.getAttribute('data-src')
+                    observer.unobserve(entry.target)
+                }
+            })
+        }
+        imgList.forEach(img => {
+            observer.observe(img)
+        })
+    </script>
+</body>
+
+</html>

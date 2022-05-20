@@ -3,16 +3,18 @@ function isEqual(obj1, obj2) {
     let isObj = type(obj1) === 'object' && type(obj2) === 'object'
     if (!isObj) return false
     // 判断对象长度是否相同
-    if (Object.keys(obj1).length !== Object.keys(obj2).length) return false
-    for (let key in obj1) {
-        if (obj2.hasOwnProperty(key)) {
+    let arr1 = Reflect.ownKeys(obj1)
+    let arr2 = Reflect.ownKeys(obj2)
+    if (arr1.length !== arr2.length) return false
+    arr1.forEach(key => {
+        if (arr2.includes(key)) {
             if (type(obj1[key]) === 'object' || type(obj2[key]) === 'object') {
                 if (!isEqual(obj1[key], obj2[key])) return false
             } else if (obj1[key] !== obj2[key]) return false
         } else {
             return false
         }
-    }
+    })
     return true
 }
 
@@ -23,7 +25,7 @@ function type(obj) {
 let obj1 = {
     name: 'chaos',
     age: 12,
-    gender: 'male',
+    gender: null,
     info: {
         address: 'nanjing',
     }
@@ -32,7 +34,7 @@ let obj1 = {
 let obj2 = {
     name: 'chaos',
     age: 12,
-    gender: 'male',
+    gender: null,
     info: {
         address: 'nanjing',
     }

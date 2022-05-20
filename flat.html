@@ -26,8 +26,8 @@
         }
         console.log(flatten(arr));
         //ES6
-        function flat(arr){
-            while(arr.some((item)=>Array.isArray(item))){
+        function flat(arr) {
+            while (arr.some((item) => Array.isArray(item))) {
                 arr = [].concat(...arr)
             }
             return arr
@@ -38,21 +38,33 @@
         function flat3(arr) {
             let res = [];
             let stack = [...arr];
-            while(stack.length) {
+            while (stack.length) {
                 let cur = stack.pop()
-                if(Array.isArray(cur)){
+                if (Array.isArray(cur)) {
                     stack.push(...cur)
-                }else{
+                } else {
                     res.push(cur)
                 }
             }
             return res.reverse()
         }
         // 使用reduce可以传入depth
-        function flat4(arr,depth = 1) {
-            return depth > 0 ? arr.reduce((acc,cur)=>{
-                return acc.concat(Array.isArray(cur)? flat4( cur , depth - 1) : cur )
-            },[]) : arr.slice()
+        function flat4(arr, depth = 1) {
+            return depth > 0 ? arr.reduce((acc, cur) => {
+                return acc.concat(Array.isArray(cur) ? flat4(cur, depth - 1) : cur)
+            }, []) : arr.slice()
+        }
+        //toString()
+        function flat5(arr) {
+            arr = arr.toString().split(',')
+            arr.forEach((item, i, num) => num[i] = +item)
+            return arr
+        }
+        //JSON.stringify()
+        function flat6(arr) {
+            let str = JSON.stringify(arr).replace(/(\[|\])/g, '')
+            str = '[' + str + ']'
+            return JSON.parse(str)
         }
     </script>
 </body>
